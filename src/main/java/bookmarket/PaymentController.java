@@ -66,6 +66,7 @@ public class PaymentController {
 
  private String fallbackPayment(long orderId) {
   System.out.println("### fallback!!!");
-  return "CircuitBreaker!!!";
+  return "CircuitBreaker!!!!!!";
+
  }
 }
