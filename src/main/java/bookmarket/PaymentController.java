@@ -1,6 +1,6 @@
-package bookmarket;
+ package bookmarket;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,8 +36,8 @@ public class PaymentController {
   return " SUCCESS!!!";
  }
 
- @GetMapping("/selectDeliveryInfo")
- @HystrixCommand(fallbackMethod = "fallbackDelivery", commandProperties = {
+ @GetMapping("/selectPaymentInfo")
+ @HystrixCommand(fallbackMethod = "fallbackPayment", commandProperties = {
          @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"),
          @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),
          @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "10"),
@@ -64,7 +64,7 @@ public class PaymentController {
   return "CircuitBreaker!!!";
  }
 
- private String fallbackDelivery(long orderId) {
+ private String fallbackPayment(long orderId) {
   System.out.println("### fallback!!!");
   return "CircuitBreaker!!!";
  }
