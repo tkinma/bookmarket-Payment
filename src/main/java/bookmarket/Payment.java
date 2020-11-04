@@ -1,8 +1,8 @@
 package bookmarket;
 
-import javax.persistence.*;
 import org.springframework.beans.BeanUtils;
-import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="Payment_table")
@@ -14,13 +14,15 @@ public class Payment {
     private Long orderId;
     private String status;
     private Long customerId;
+    private String paymentStatus;
 
     @PostPersist
-    public void onPostPersist(){
+    public void onPostPersist() throws InterruptedException {
+
         Paid paid = new Paid();
         BeanUtils.copyProperties(this, paid);
         paid.publishAfterCommit();
-
+        Thread.sleep(3000);
 
     }
 
@@ -64,6 +66,12 @@ public class Payment {
     }
 
 
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
 
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
 
 }
