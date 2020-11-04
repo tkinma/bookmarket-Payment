@@ -10,6 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableBinding(KafkaProcessor.class)
 @EnableFeignClients
+@EnableCircuitBreaker
 public class PaymentApplication {
     protected static ApplicationContext applicationContext;
     public static void main(String[] args) {
