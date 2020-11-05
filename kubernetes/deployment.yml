@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: payment
-          image: admin03.azurecr.io/payment:latest
+          image: admin35.azurecr.io/payment:latest
           ports:
             - containerPort: 8080
           resources:
